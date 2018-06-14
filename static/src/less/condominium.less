@@ -5,7 +5,7 @@
 @red:                           #ff3f3f;
 @pink:                          #db6574;
 
-@primary-color:                 @blue;
+@primary-color:                 @sea;
 @secondary-color:               #e91e63!important;
 @topbar-color:                  #1b1f32; //#2d3035;
 @body-color:                    lighten(@panel-background-color,65%);
@@ -71,7 +71,7 @@
 @pivot-table-th-closed-background-color-color:          @panel-background-color;
 @pivot-table-th-measure-background-color-color:         @panel-background-color;
 
-@input-background-color:                                transparent;
+@input-background-color:                                @body-background-color; //transparent;
 @input-color:                                           @body-color;
 @transition:                                            all 0.3s ease-out;
 @input-transition:                                      @transition;
@@ -992,17 +992,28 @@ a {
 /***
 Tabs
 ***/
+.nav > li > a:hover, a:focus {
+    background-color: transparent;
+    color: @primary-color;
+    border-top: 1px solid @primary-color;
+    border-bottom: 1px solid @panel-background-color;
+    border-left: 1px solid @border-line-color;
+    border-right: 1px solid @border-line-color;
+}
 .tab-content {
     > .active {
         padding: 0 10px;
     }
-    &.nav {
-        > li {
-            > a:focus {
-                background-color: transparent;
+    .nav {
+        li {
+            > a {
+                &:focus
+                &:hover {
+                    background: red !important;
+                }
             }
         }
-        &.nav-tabs {
+        .nav-tabs {
             border-left: 1px solid @border-line-color;
             border-right: 1px solid @border-line-color;
             > li {
@@ -1136,7 +1147,7 @@ Dropdown
         }
     }
     input[type="text"], input[type="number"], select {
-        border: 1px solid @border-line-color;
+        border: 1px solid @border-line-color !important;
         background-color: transparent;
     }
     .fa {
@@ -1415,6 +1426,7 @@ html .o_loading {
             border: 1px solid @border-line-color;
             color: #777;
         }
+        margin-bottom: 0px;
     }
 }
 
@@ -1702,6 +1714,7 @@ hr {
       > tbody {
           > tr:hover {
               background-color: rgba(37,43,70,.3);
+              border-bottom: 1px solid @primary-color;
           }
       }
   }
@@ -2009,4 +2022,25 @@ Scrollbar
     .oe_throbber_message {
         color: @secondary-color !important;
     }
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  border: 1px solid @border-line-color;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: @primary-color;
+  background: @input-background-color;
+
+  &:hover {
+      border-color: @primary-color !important;
+      transition: all 0.3s ease-out;
+  }
+  &:focus {
+    border-bottom-color: @primary-color !important;
+    transition: all 0.3s ease-in-out;
+  }
 }
